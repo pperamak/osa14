@@ -1,8 +1,18 @@
 import Link from "next/link"
 import { getBlogs } from "../services/blogs"
+import { redirectSearch } from "../actions/blogs"
 
-const Blogs = () => {
-  const blogs = getBlogs()
+const Blogs = async ({
+  searchParams,
+}:{
+  searchParams: Promise<{ search?: string}>
+}) => {
+  const { search } = await searchParams
+  const allBlogs = getBlogs()
+  const blogs = search
+    ? allBlogs.filter((blog) => blog.title.toLowerCase().includes(search.toLowerCase()))
+    : allBlogs
+    
   return (
     <div>
       <h2>Blogs</h2>
@@ -13,6 +23,13 @@ const Blogs = () => {
           </li>
         ))}
       </ul>
+      <form action={redirectSearch}>
+        <label>
+          search by title:
+          <input type="text" name="search"/>
+        </label> 
+        <button type="submit">Search</button>
+      </form>
     </div>
   )
 }
