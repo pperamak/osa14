@@ -22,6 +22,13 @@
       "when": 1789629008438,
       "tag": "0002_milky_mercury",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790349626289,
+      "tag": "0003_jittery_tenebrous",
+      "breakpoints": true
     }
   ]
 }
